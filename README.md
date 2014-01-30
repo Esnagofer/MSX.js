@@ -25,10 +25,20 @@ roms
     ROAD.ROM
 ```
 
-## Configuring Apache
+## Configuring a server
 
-Since we are having some difficulties to load the ROMs from local files,
-we configured Apache to serve the app and the ROM files.
+Since we are having some difficulties to load the ROMs from local files, 
+we configured a HTTP server to serve the app and the ROM files.
+
+### Configuring a Node.js server
+
+```
+$ npm install connect
+
+$ node server.js
+```
+
+### Configuring Apache
 
 ```
 $ sudo vi /etc/apache2/sites-available/msxjs
