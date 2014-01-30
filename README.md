@@ -1,4 +1,4 @@
-# jsMSX
+# MSX.js
 
 Unofficial mirror of jsmsx repo.
 
