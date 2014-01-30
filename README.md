@@ -63,8 +63,7 @@ If you think you'd like to participate, are just curious or want to say hello, p
 Portions of the initial JavaScript code was derived from Arnon Cardoso's Java MSX Emulator (first Java MSX emulator), Murilo Queiroz's Java Phoenix Emulator (first Java Arcade emulator) and Davidson&Pollard's Z80 class of the
  Spectrum Java Emulator, after reading this thread: http://www.msx.org/forumtopic4176.html. Thank you all for your past efforts!
 
-
-## License
+### License from the original author
 
 JSMSX - MSX Emulator in JavaScript
 Copyright (c) 2006 Marcus Granado <mrc.gran(@)gmail.com>
