@@ -34,7 +34,7 @@ we configured Apache to serve the app and the ROM files.
 $ sudo vi /etc/apache2/sites-available/msxjs
 
 -----------------------------------------------
-Alias /jsmsx /home/nodeminderjs/workspace/msxjs
+Alias /msxjs /home/nodeminderjs/workspace/msxjs
 
 <Directory /home/nodeminderjs/workspace/msxjs/>
   Options Indexes FollowSymLinks MultiViews
