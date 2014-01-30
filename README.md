@@ -62,8 +62,6 @@ $ sudo service apache2 restart
 
 Original repo is on [SourceForge](http://sourceforge.net/projects/jsmsx/).
 
-Original author is [Marcus Granado](mrc.gran @ gmail.com).
-
 ### README from the original author
 
 jsMSX is a MSX emulator 100% written in JavaScript. Yes, you read it: JavaScript! It emulates the underlying Z80 CPU, TMS9918 Video Display Processor (VDP), PPI, RAM slots and Megaram. In its present form, it should be able to run any program or game developed for MSX 1.0.
