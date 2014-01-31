@@ -1,0 +1,14 @@
+body {
+  /* font-size:small; */
+  line-height:140%;
+}
+
+table {
+  font-size:small;
+  line-height:140%;
+  padding:2px;
+}
+
+input[type=text] {width:100%;}
+
+input#interrupts {width:auto;}

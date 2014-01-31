@@ -60,13 +60,14 @@ $ sudo service apache2 restart
 
 ## Configuring Bootstrap
 
+Using Bootstrap 3.1.0.
+
 ```
 lib
   bootstrap
-    dist
-      css
-      fonts
-      js
+    css
+    fonts
+    js
 ```
 
 ## Credits
@@ -104,7 +105,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-### g
+### gmarty / jsMSX
 
 This project was forked from [gmarty / jsMSX](https://github.com/gmarty/jsMSX).
 
