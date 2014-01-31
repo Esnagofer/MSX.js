@@ -20,14 +20,30 @@
 
 'use strict';
 
-
-
 /**
  * @constructor
  */
 function psg8910() {
   this.enderecoAtual = 0;
   this.registros = Array(16);
+  
+  /*
+   * initialize tss
+   */
+  this.looper = new AudioLooper(512);
+  this.filter = new BiquadFilterChannel();
+  this.looper.setChannel(this.filter);
+
+  this.master3 = new MasterChannel();
+  this.psgdev3 = new PsgDeviceChannel();
+  this.psgdev3.setMode(PsgDeviceChannel.MODE_SIGNED);
+  this.psgdev3.setDevice(PsgDeviceChannel.DEVICE_AY_3_8910);
+  this.master3.addChannel(this.psgdev3);
+  
+  if (this.looper && !this.looper.isActive())
+    this.looper.activate();
+  
+  this.filter.setChannel(this.master3);
 }
 
 psg8910.prototype = {
@@ -35,6 +51,8 @@ psg8910.prototype = {
     this.registros[this.enderecoAtual] = i;
     if (this.enderecoAtual == 7)
       this.registros[this.enderecoAtual] |= 0x80;
+
+    this.psgdev3.writeRegister(this.enderecoAtual, this.registros[this.enderecoAtual]);
   },
 
   escrevePortaEndereco: function(i) {

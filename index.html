@@ -1,56 +1,68 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>jsMSX - The first MSX emulator 100% written in Javascript</title>
-<style>
-body {font-size:small; line-height:140%; padding:2px;}
-table {font-size:small; line-height:140%; padding:2px;}
-input[type=text] {width:100%;}
-input#interrupts {width:auto;}
-</style>
-<!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
-<script src="lib/jquery.min.js" type="text/javascript"></script>
-<script src="source/msx.js" type="text/javascript"></script>
-<script src="source/z80.js" type="text/javascript"></script>
-<script src="source/keyboard.js" type="text/javascript"></script>
-<script src="source/psg8910.js" type="text/javascript"></script>
-<script src="source/tms9918.js" type="text/javascript"></script>
-<script src="source/ui.js" type="text/javascript"></script>
-<script src="express/msx1.rom.js" type="text/javascript"></script>
-<script src="express/goonies.rom.js" type="text/javascript"></script>
-</head>
+  <head>
+    <title>jsMSX - The first MSX emulator 100% written in Javascript</title>
 
-<body>
-  <div style="width:580px;margin:0 auto 0 auto;">
-    <h2>jsMSX - The first MSX emulator 100% written in Javascript</h2>
-    <p>
-      jsMSX Copyright (c) 2006 Marcus Granado [mrc.gran(@)gmail.com] 
-    </p>
-    <div>
-      <canvas id="canvas" name="canvas" width="256" height="192" style="border:medium solid;"></canvas>
-      <br>
-      <input id="start" value="start" onclick="msx_start();" type="button">
-      <input id="stop" value="pause" disabled="true" onclick="msx_stop();" type="button">
-      <input id="reset" value="reset" onclick="msx_reset();" type="button">
-      Interrupts:
-      <input id="interrupts" value="0" size="5" type="text">
+    <style>
+      body {font-size:small; line-height:140%; padding:2px;}
+      table {font-size:small; line-height:140%; padding:2px;}
+      input[type=text] {width:100%;}
+      input#interrupts {width:auto;}
+    </style>
+
+    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+    <script src="lib/jquery.min.js" type="text/javascript"></script>
+
+    <!-- tss -->
+    <script>var exports = {};</script>
+    <script src="3rdparty/tss/Log.js"></script>
+    <script src="3rdparty/tss/AudioLooper.js"></script>
+    <script src="3rdparty/tss/BiquadFilterChannel.js"></script>
+    <script src="3rdparty/tss/MasterChannel.js"></script>
+    <script src="3rdparty/tss/PsgDeviceChannel.js"></script>
+
+    <script src="source/msx.js"></script>
+    <script src="source/z80.js"></script>
+    <script src="source/keyboard.js"></script>
+    <script src="source/psg8910.js"></script>
+    <script src="source/tms9918.js"></script>
+    <script src="source/ui.js"></script>
+
+    <script src="express/msx1.rom.js" type="text/javascript"></script>
+    <script src="express/goonies.rom.js" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <div style="width:580px;margin:0 auto 0 auto;">
+      <h2>jsMSX - The first MSX emulator 100% written in Javascript</h2>
+      <p>
+        jsMSX Copyright (c) 2006 Marcus Granado [mrc.gran(@)gmail.com] 
+      </p>
+      <div>
+        <canvas id="canvas" name="canvas" width="256" height="192" style="border:medium solid;"></canvas>
+        <br>
+        <input id="start" value="start" onclick="msx_start();" type="button">
+        <input id="stop" value="pause" disabled="true" onclick="msx_stop();" type="button">
+        <input id="reset" value="reset" onclick="msx_reset();" type="button">
+        Interrupts:
+        <input id="interrupts" value="0" size="5" type="text">
+      </div>
+      <h2>To load arbitrary roms</h2>
+      <p>Please load the ROM images before starting the emulator:</p>
+      <p>
+        1. <select id="bios" style="width:200px;"></select>
+           <input id="loadbiosrom" value="Load BIOS ROM" onclick="msx_loadbiosrom();" type="button" style="width:130px;">
+           <span id="current-bios"></span>
+      </p>
+      <p>
+        2. <select id="games" style="width:200px;"></select>
+           <input id="loadcartrom" value="Load Cartridge ROM" onclick="msx_loadcartrom();" type="button" style="width:130px;">
+           <span id="current-game"></span>
+      </p>
+      <div>
+        <pre style="border:medium solid;"><p id="logbuf">Console:</p></pre>
+      </div>
     </div>
-    <h2>To load arbitrary roms</h2>
-    <p>Please load the ROM images before starting the emulator:</p>
-    <p>
-      1. <select id="bios" style="width:200px;"></select>
-         <input id="loadbiosrom" value="Load BIOS ROM" onclick="msx_loadbiosrom();" type="button" style="width:130px;">
-         <span id="current-bios"></span>
-    </p>
-    <p>
-      2. <select id="games" style="width:200px;"></select>
-         <input id="loadcartrom" value="Load Cartridge ROM" onclick="msx_loadcartrom();" type="button" style="width:130px;">
-         <span id="current-game"></span>
-    </p>
-    <div>
-      <pre style="border:medium solid;"><p id="logbuf">Console:</p></pre>
-    </div>
-  </div>
 
 <script type="text/javascript">
 
@@ -68,7 +80,6 @@ function getDirList(url, select) {
         var a = $('a', $(s));
         a.slice(5).each(function(index) {
           var f = $(this).text();
-          console.log( index + ": " + f );
           if (f == "expert_1.0_basic-bios1.rom" || f == "ROAD.ROM") {
             $(select).append("<option selected>" + $(this).text() + "</option>");
           }
@@ -80,7 +91,6 @@ function getDirList(url, select) {
     }
   });
 }
-
 
 
 var mylogbuf = document.getElementById('logbuf');
@@ -107,7 +117,6 @@ function msx_start() {
   msx.start();
   document.getElementById('start').disabled = true;
   document.getElementById('stop').disabled = false;
-  document.getElementById('scale2x').disabled = true;
 }
 
 function msx_stop() {
@@ -162,4 +171,3 @@ function getRomData(url, callback) {
 </script>
 </body>
 </html>
-

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Page for T'Sound System in JavaScript (Web Audio API / Audio Data API)</title>
+
+  <!-- include components -->
+  <script language="JavaScript">var exports = {};</script>
+  <script language="JavaScript" src="Log.js"></script>
+  <script language="JavaScript" src="AudioLooper.js"></script>
+  <script language="JavaScript" src="BiquadFilterChannel.js"></script>
+  <script language="JavaScript" src="MasterChannel.js"></script>
+  <script language="JavaScript" src="PsgDeviceChannel.js"></script>
+
+  <!-- control callback scripts -->
+  <script language="JavaScript">
+    function activate() {
+      if (looper && !looper.isActive())
+        looper.activate();
+    }
+
+    function testxstop() {
+      if (0 != test) {
+        filter.setChannel(null);
+        test = 0;
+      }
+    }
+ 
+    function test3start() {
+      activate();
+      filter.setChannel(master3);
+      psgdev3.writeRegister( 7, 0x38);
+      psgdev3.writeRegister( 8, 0x0f);
+      psgdev3.writeRegister( 9, 0x0f);
+      psgdev3.writeRegister(10, 0x0f);
+      psgdev3.writeRegister( 1, 0x01);
+      psgdev3.writeRegister( 0, 0xc2);
+      psgdev3.writeRegister( 3, 0x01);
+      psgdev3.writeRegister( 2, 0xc4);
+      psgdev3.writeRegister( 5, 0x01);
+      psgdev3.writeRegister( 4, 0xc6);
+      test = 3;
+    }
+  </script>
+</head>
+<body>
+
+<p class="title">3. AY-3-8910 emulation test</p>
+<button onclick="test3start()">START</button>
+<button onclick="testxstop()">STOP</button>
+
+<script language="JavaScript">
+  var test = 0;
+  var looper = new AudioLooper(512);
+  var filter = new BiquadFilterChannel();
+  looper.setChannel(filter);
+
+  // TEST 3
+  var master3 = new MasterChannel();
+  var psgdev3 = new PsgDeviceChannel();
+  psgdev3.setMode(PsgDeviceChannel.MODE_SIGNED);
+  psgdev3.setDevice(PsgDeviceChannel.DEVICE_AY_3_8910);
+  master3.addChannel(psgdev3);
+</script>
+
+</body>
+</html>

@@ -90,3 +90,11 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
+
+### T'Sound System
+
+TSS is a chiptune sound library written by Takashi Toyoshima (toyoshim@gmail.com).
+
+The official repository is hosted on [Google Code](https://code.google.com/p/tss/).
+
+It is distributed under the terms of the New BSD License.
