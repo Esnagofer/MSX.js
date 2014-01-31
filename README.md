@@ -5,6 +5,7 @@ This is a MSX emulator 100% written in JavaScript.
 It's based on the [jsMSX](http://jsmsx.sourceforge.net/) project and 
 forked from the [gmarty / jsMSX](https://github.com/gmarty/jsMSX) GitHub repository.
 
+See a demo running at http://msxjs.com:4000/.
 
 ## Lib and Roms directories
 
