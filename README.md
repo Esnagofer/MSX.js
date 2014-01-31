@@ -58,6 +58,17 @@ $ sudo ln -s /etc/apache2/sites-available/msxjs /etc/apache2/sites-enabled/msxjs
 $ sudo service apache2 restart
 ```
 
+## Configuring Bootstrap
+
+```
+lib
+  bootstrap
+    dist
+      css
+      fonts
+      js
+```
+
 ## Credits
 
 Original repo is on [SourceForge](http://sourceforge.net/projects/jsmsx/).
