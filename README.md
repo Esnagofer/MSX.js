@@ -71,9 +71,11 @@ lib
 
 ## Credits
 
+### jsMSX project
+
 Original repo is on [SourceForge](http://sourceforge.net/projects/jsmsx/).
 
-### README from the original author
+#### README from the original author
 
 jsMSX is a MSX emulator 100% written in JavaScript. Yes, you read it: JavaScript! It emulates the underlying Z80 CPU, TMS9918 Video Display Processor (VDP), PPI, RAM slots and Megaram. In its present form, it should be able to run any program or game developed for MSX 1.0.
 
@@ -82,7 +84,7 @@ If you think you'd like to participate, are just curious or want to say hello, p
 Portions of the initial JavaScript code was derived from Arnon Cardoso's Java MSX Emulator (first Java MSX emulator), Murilo Queiroz's Java Phoenix Emulator (first Java Arcade emulator) and Davidson&Pollard's Z80 class of the
  Spectrum Java Emulator, after reading this thread: http://www.msx.org/forumtopic4176.html. Thank you all for your past efforts!
 
-### License from the original author
+#### License from the original author
 
 JSMSX - MSX Emulator in JavaScript
 Copyright (c) 2006 Marcus Granado <mrc.gran(@)gmail.com>
@@ -101,6 +103,11 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
+
+### g
+
+This project was forked from [gmarty / jsMSX](https://github.com/gmarty/jsMSX).
+
 
 ### T'Sound System
 
