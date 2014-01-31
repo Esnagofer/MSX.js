@@ -71,5 +71,5 @@ var app = connect()
           //.use(connect.directory(__dirname))
           .use(directory(__dirname));
 
-http.createServer(app).listen(3000);
-console.log('Server listenning on port 3000...');
+http.createServer(app).listen(4000);
+console.log('Server listenning on port 4000...');
