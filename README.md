@@ -9,12 +9,18 @@ See a demo running at http://msxjs.com:4000/.
 
 ## Lib and Roms directories
 
-Create two directories called _lib_ and _roms_ to put jquery lib and ROM files there.
+Create a directory called _lib_ to put jQuery and Bootstrap libs there.
 
-Example:
+Create a directory called _roms_ to put ROM files there.
+
+See the directory structure:
 
 ```
 lib
+  bootstrap
+    css
+    fonts
+    js
   jquery.min.js
   
 roms
@@ -57,18 +63,6 @@ Alias /msxjs /home/nodeminderjs/workspace/msxjs
 
 $ sudo ln -s /etc/apache2/sites-available/msxjs /etc/apache2/sites-enabled/msxjs
 $ sudo service apache2 restart
-```
-
-## Configuring Bootstrap
-
-Using Bootstrap 3.1.0.
-
-```
-lib
-  bootstrap
-    css
-    fonts
-    js
 ```
 
 ## Credits
