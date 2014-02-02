@@ -7,6 +7,10 @@ forked from the [gmarty / jsMSX](https://github.com/gmarty/jsMSX) GitHub reposit
 
 See a demo running at http://msxjs.com:4000/.
 
+Tested in the following browsers:
+
+* Chrome 32.0 (JavaScript V8 3.22)
+
 ## Lib and Roms directories
 
 Create a directory called _lib_ to put jQuery and Bootstrap libs there.

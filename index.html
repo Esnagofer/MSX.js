@@ -59,8 +59,10 @@
   </nav>    
     
     
-    <div style="width:580px;margin:0 auto 0 auto;">
-      <h2>MSX.js - The MSX emulator 100% written in Javascript</h2>
+    <div id="main">
+      <div id="title">
+      <h1>MSX.js - The MSX emulator 100% written in Javascript</h1>
+      </div>
       <div>
         <canvas id="canvas" name="canvas" width="256" height="192" style="border:medium solid;"></canvas>
         <br>
@@ -70,18 +72,20 @@
         Interrupts:
         <input id="interrupts" value="0" size="5" type="text">
       </div>
-      <h2>To load arbitrary roms</h2>
+      <br>
       <p>Please load the ROM images before starting the emulator:</p>
-      <p>
-        1. <select id="bios" style="width:220px;"></select>
-           <input id="loadbiosrom" value="Load BIOS ROM" onclick="msx_loadbiosrom();" type="button" style="width:150px;">
-           <span id="current-bios"></span>
-      </p>
-      <p>
-        2. <select id="games" style="width:220px;"></select>
-           <input id="loadcartrom" value="Load Cartridge ROM" onclick="msx_loadcartrom();" type="button" style="width:150px;">
-           <span id="current-game"></span>
-      </p>
+      <div id="load">
+        <p>
+          1. <select id="bios" style="width:220px;"></select>
+             <input id="loadbiosrom" value="Load BIOS ROM" onclick="msx_loadbiosrom();" type="button" style="width:150px;">
+             <span id="current-bios"></span>
+        </p>
+        <p>
+          2. <select id="games" style="width:220px;"></select>
+             <input id="loadcartrom" value="Load Cartridge ROM" onclick="msx_loadcartrom();" type="button" style="width:150px;">
+             <span id="current-game"></span>
+        </p>
+      </div>
       <div>
         <pre style="border:medium solid;"><p id="logbuf">Console:</p></pre>
       </div>

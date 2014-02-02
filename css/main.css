@@ -1,6 +1,26 @@
 body {
-  /* font-size:small; */
   line-height:140%;
+}
+
+h1 {
+  font-size: 135%;  
+}
+
+#main {
+  width:520px;
+  margin:0 auto;
+}
+
+#title {
+  text-align: center;
+}
+
+#load {
+  font-size:95%;
+}
+
+#load input, #load button {
+  height: 24px;
 }
 
 table {
