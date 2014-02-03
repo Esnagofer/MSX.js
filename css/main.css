@@ -3,24 +3,37 @@ body {
 }
 
 h1 {
-  font-size: 135%;  
+  font-size: 20px;  
 }
+
+.navbar-brand:link {color:#fff;}      /* unvisited link */
+.navbar-brand:visited {color:#fff;}   /* visited link */
+.navbar-brand:hover {color:#fff;}     /* mouse over link */
+.navbar-brand:active {color:#fff;}    /* selected link */
 
 #main {
   width:520px;
   margin:0 auto;
 }
 
-#title {
-  text-align: center;
-}
-
 #load {
   font-size:95%;
+  margin-top: 8px;
 }
 
-#load input, #load button {
+#current-bios, #current-game {
+  display: inline;
+  border: 1px solid gray;
+  width: 80px;
   height: 24px;
+}
+
+#load select, #load input {
+  height: 24px;
+}
+
+#load img {
+  margin-bottom: 4px;
 }
 
 table {

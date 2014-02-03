@@ -9,7 +9,8 @@ See a demo running at http://msxjs.com:4000/.
 
 Tested in the following browsers:
 
-* Chrome 32.0 (JavaScript V8 3.22)
+* Chrome 32.0
+* Firefox 26.0
 
 ## Lib and Roms directories
 

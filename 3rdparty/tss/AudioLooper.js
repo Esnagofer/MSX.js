@@ -23,20 +23,27 @@ function AudioLooper (bufferSize) {
 
     // Web Audio API on Chrome, Safari, and Firefox.
     if (window['webkitAudioContext'] || window['AudioContext']) {
-        Log.getLog().info("AudioLooper: detect Web Audio API");
-        this.audioContext = new webkitAudioContext() || new AudioContext();
+        console.log("AudioLooper: detect Web Audio API");
+      
+        this.audioContext = null;
+        if (typeof AudioContext !== 'undefined') {
+          this.audioContext = new AudioContext();
+        } else if (typeof webkitAudioContext !== 'undefined') {
+          this.audioContext = new webkitAudioContext();
+        }
+      
         if (this.audioContext == null) {
             Log.getLog().fatal('AudioLooper: could not create AudioContext');
             this.initialized = false;
             return;
         }
         this.sampleRate = this.audioContext.sampleRate;
-        Log.getLog().info('AudioLooper: sample rate is ' + this.sampleRate);
+        console.log('AudioLooper: sample rate is ' + this.sampleRate);
 
         // Allocate JavaScript synthesis node.
         this.bufferSource = this.audioContext['createBufferSource']();
-        this.jsNode = this.audioContext['createJavaScriptNode'](
-                this.bufferSize, 2, 2);
+        //this.jsNode = this.audioContext['createJavaScriptNode'](this.bufferSize, 2, 2);
+        this.jsNode = this.audioContext['createScriptProcessor'](this.bufferSize, 2, 2);
 
         // Register callback
         this.jsNode.owner = this;
@@ -45,7 +52,8 @@ function AudioLooper (bufferSize) {
         };
 
         // Connect to output audio device.
-        this.bufferSource['noteOn'](0);
+        //this.bufferSource['noteOn'](0);
+        this.bufferSource['start'](0);
         this.bufferSource['connect'](this.jsNode);
         this.jsNode['connect'](this.audioContext['destination']);
 
@@ -209,8 +217,10 @@ AudioLooper.prototype.isActive = function () {
  * Activate audio playback loop.
  */
 AudioLooper.prototype.activate = function () {
+    console.log('activate 1');
     if (this.isActive())
         return;
-    this.bufferSource['noteOn'](0);
+    //this.bufferSource['noteOn'](0);
+    //this.bufferSource['start'](0);
+    console.log('activate 2');
 };
-

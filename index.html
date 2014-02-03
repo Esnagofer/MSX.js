@@ -43,7 +43,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">MSX.js</a>
+        <a class="navbar-brand" href="/">MSX.js - The MSX emulator 100% written in Javascript</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,30 +60,29 @@
     
     
     <div id="main">
-      <div id="title">
-      <h1>MSX.js - The MSX emulator 100% written in Javascript</h1>
-      </div>
       <div>
         <canvas id="canvas" name="canvas" width="256" height="192" style="border:medium solid;"></canvas>
-        <br>
-        <input id="start" value="start" onclick="msx_start();" type="button">
-        <input id="stop" value="pause" disabled="true" onclick="msx_stop();" type="button">
-        <input id="reset" value="reset" onclick="msx_reset();" type="button">
-        Interrupts:
-        <input id="interrupts" value="0" size="5" type="text">
       </div>
-      <br>
-      <p>Please load the ROM images before starting the emulator:</p>
       <div id="load">
+        <p>Please load the ROM images before starting the emulator:</p>
         <p>
-          1. <select id="bios" style="width:220px;"></select>
-             <input id="loadbiosrom" value="Load BIOS ROM" onclick="msx_loadbiosrom();" type="button" style="width:150px;">
-             <span id="current-bios"></span>
+          1. <select id="bios" style="width:230px;"></select>
+          <input id="loadbiosrom" value="Load BIOS ROM" onclick="msx_loadbiosrom();" type="button" style="width:140px;">
+          <img id="bios-ok" src="img/checked.png" width="21" height="24" /> 
+          <img id="bios-notok" src="img/unchecked.png" width="19" height="24" /> 
         </p>
         <p>
-          2. <select id="games" style="width:220px;"></select>
-             <input id="loadcartrom" value="Load Cartridge ROM" onclick="msx_loadcartrom();" type="button" style="width:150px;">
-             <span id="current-game"></span>
+          2. <select id="games" style="width:230px;"></select>
+          <input id="loadcartrom" value="Load Cartridge ROM" onclick="msx_loadcartrom();" type="button" style="width:140px;">
+          <img id="game-ok" src="img/checked.png" width="21" height="24" /> 
+          <img id="game-notok" src="img/unchecked.png" width="19" height="24" /> 
+        </p>
+        <p>
+          3. <input id="start" value="start" onclick="msx_start();" type="button">
+          <input id="stop" value="pause" disabled="true" onclick="msx_stop();" type="button">
+          <input id="reset" value="reset" onclick="msx_reset();" type="button">
+          Interrupts:
+          <input id="interrupts" value="0" size="5" type="text">
         </p>
       </div>
       <div>
@@ -119,7 +118,6 @@ function getDirList(url, select) {
   });
 }
 
-
 var mylogbuf = document.getElementById('logbuf');
 var mycanvas = document.getElementById('canvas');
 var mycanvasctx = mycanvas.getContext('2d');
@@ -128,6 +126,11 @@ $(mycanvas).animate({
   width: '512px',
   height: '384px'
 });
+  
+$("#bios-ok").hide();
+$("#bios-notok").show();
+$("#game-ok").hide();
+$("#game-notok").show();
 
 var msx = new JSMSX(window, mycanvasctx, mylogbuf);
 console.log(msx);
@@ -153,8 +156,9 @@ function msx_stop() {
 }
 
 function msx_reset() {
-  msx.reset();
-  msx.interruptCounter = 0;
+  //msx.reset();
+  //msx.interruptCounter = 0;
+  location.reload();
 }
 
 function msx_showpc() {
@@ -165,7 +169,8 @@ function msx_loadbiosrom() {
   var f = escape($("#bios").val());
   getRomData('roms/bios/' + f, function(res) {
     msx.loadBios(res, 0);
-    $("#current-bios").text(f);
+    $("#bios-ok").show();
+    $("#bios-notok").hide();
   });
 }
 
@@ -173,7 +178,8 @@ function msx_loadcartrom() {
   var f = escape($("#games").val());
   getRomData('roms/games/' + f, function(res) {
     msx.loadRom(res, 2, 2);
-    $("#current-game").text(f);
+    $("#game-ok").show();
+    $("#game-notok").hide();
   });
 }
 
